@@ -156,3 +156,34 @@ nav ul li:hover > ul.submenu {
     display: block;
   }
 }
+
+/* === MENU HAMBÚRGUER === */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--cor-principal);
+}
+
+/* Mostrar botão e esconder menu no mobile */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+    margin: 10px auto;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--fundo-claro);
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  nav.ativo ul {
+    display: flex; /* Exibe o menu quando o JS adiciona a classe .ativo */
+  }
+}
