@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header, footer {
+  background-color: var(--fundo-claro);
+  text-align: center;
+  padding: 20px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap);
+  list-style: none;
+  margin-top: 10px;
+}
+
+nav a {
+  color: var(--cor-principal);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #002244;
+}
+
+a:focus, button:focus, input:focus {
+  outline: 3px solid #036;
+  outline-offset: 2px;
+}
+
+main section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+  header h1 { font-size: 1.5rem; }
+}
+
+/* === GRID PRINCIPAL === */
+main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+}
+
+section, article {
+  grid-column: span 12;
+}
+
+/* === GRID RESPONSIVO === */
+@media (min-width: 768px) {
+  section, article {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1200px) {
+  section, article {
+    grid-column: span 4;
+  }
+}
+
+/* === BREAKPOINTS ADICIONAIS === */
+@media (max-width: 480px) {
+  body { font-size: var(--font-sm); }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .container { max-width: 960px; }
+}
+
+@media (min-width: 1440px) {
+  .container { max-width: 1200px; }
+}
+
+/* === SUBMENU DROPDOWN === */
+nav ul li {
+  position: relative;
+}
+
+nav ul ul.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--fundo-claro);
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 10;
+}
+
+nav ul ul.submenu li {
+  display: block;
+  margin: 0;
+}
+
+nav ul ul.submenu a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--cor-principal);
+  text-decoration: none;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+nav ul ul.submenu a:hover {
+  background: var(--cor-secundaria);
+  color: #fff;
+}
+
+/* Exibe o submenu ao passar o mouse no desktop */
+nav ul li:hover > ul.submenu {
+  display: block;
+}
+
+/* === MOBILE: Submenu visível quando ativo === */
+@media (max-width: 600px) {
+  nav ul ul.submenu {
+    position: static;
+    box-shadow: none;
+    background: none;
+    padding: 0;
+  }
+
+  nav ul ul.submenu a {
+    padding-left: 30px;
+  }
+
+  nav ul li.has-submenu.open > ul.submenu {
+    display: block;
+  }
+}
+

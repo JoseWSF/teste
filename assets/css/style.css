@@ -1,0 +1,380 @@
+/* === IMPORTAÇÕES MODULARES === */
+@import url('variables');
+@import url('layout');
+@import url('components');
+
+/* === VARIÁVEIS GLOBAIS === */
+:root {
+  --max: 1000px;
+  --gap: 16px;
+  --cor-principal: #003366;
+  --fundo-claro: #eaf2f8;
+  --fundo-artigo: #f9f9f9;
+}
+
+/* === RESET BÁSICO === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* === CONTAINER CENTRAL === */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* === CABEÇALHO E RODAPÉ === */
+header,
+footer {
+  background-color: var(--fundo-claro);
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* === NAVEGAÇÃO === */
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap);
+  list-style: none;
+  margin-top: 10px;
+}
+
+nav a {
+  color: var(--cor-principal);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+a:focus, button:focus, input:focus {
+  outline: 3px solid #036;
+  outline-offset: 2px;
+}
+
+nav a:hover {
+  color: #002244;
+}
+
+/* === TÍTULOS E TEXTOS === */
+h1, h2, h3 {
+  margin: 10px 0;
+}
+
+p {
+  margin: 10px 0;
+}
+
+/* === SEÇÕES PRINCIPAIS === */
+main section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* === ARTIGOS DE PROJETOS === */
+article {
+  background-color: var(--fundo-artigo);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+}
+
+/* === FIGURAS E IMAGENS === */
+figure {
+  margin: 20px auto;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+figcaption {
+  margin-top: 5px;
+  font-style: italic;
+  color: #555;
+}
+
+/* === FORMULÁRIOS === */
+label {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea,
+button {
+  width: 100%;
+  max-width: 480px;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+button {
+  background: var(--cor-principal);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* === Acessibilidade e contraste aprimorado === */
+button:hover {
+  background: #002244;
+}
+
+body {
+  background-color: #fff;
+  color: #222;
+}
+
+button {
+  background: #036;
+  color: #fff;
+}
+
+button:hover {
+  background: #024;
+}
+
+a {
+  color: #036;
+}
+
+a:hover {
+  color: #024;
+}
+
+/* === FIELDSET E LEGEND === */
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+/* === ALINHAMENTO DE CHECKBOX E RADIO === */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+label.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* === LISTA DE IMPACTO === */
+#impacto ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#impacto li {
+  margin-bottom: 6px;
+}
+
+/* === MOLDURA SUAVE PARA IMAGENS === */
+#sobre img,
+#missao img,
+#historico img,
+#transparencia img,
+article img {
+  border: 2px solid rgba(240, 240, 240, 0.8); 
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  display: block;
+  margin: 20px auto;
+  background-color: #fff;
+}
+
+
+/* === RESPONSIVIDADE (MOBILE-FIRST) === */
+
+/* Smartphones */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  article {
+    width: 100%;
+    padding: 12px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  form {
+    padding: 10px;
+  }
+}
+
+/* Tablets entre 601px e 900px */
+@media (min-width: 601px) and (max-width: 900px) {
+  .container {
+    max-width: 700px;
+  }
+
+  article {
+    width: 90%;
+  }
+}
+
+/* === Correção: remove os pontos das listas e centraliza === */
+ul {
+  list-style: none;      
+  padding-left: 0;       /* remove recuo padrão */
+  margin: 0 auto;
+  text-align: center;
+}
+
+ul li {
+  margin-bottom: 6px;    /* espaço entre os itens */
+}
+
+/* === SUBMENU DROPDOWN === */
+nav ul li {
+  position: relative;
+}
+
+nav ul ul.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--fundo-claro);
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 10;
+}
+
+nav ul ul.submenu li {
+  display: block;
+  margin: 0;
+}
+
+nav ul ul.submenu a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--cor-principal);
+  text-decoration: none;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+nav ul ul.submenu a:hover {
+  background: var(--cor-secundaria);
+  color: #fff;
+}
+
+/* Exibe o submenu ao passar o mouse (desktop) */
+nav ul li:hover > ul.submenu {
+  display: block;
+}
+
+/* === MOBILE === */
+@media (max-width: 600px) {
+  nav ul ul.submenu {
+    position: static;
+    box-shadow: none;
+    background: none;
+    padding: 0;
+  }
+
+  nav ul ul.submenu a {
+    padding-left: 30px;
+  }
+
+  nav ul li.has-submenu.open > ul.submenu {
+    display: block;
+  }
+}
+
+/* === MENU HAMBÚRGUER === */
+
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--cor-principal, #333);
+  margin: 10px auto;
+}
+
+/* O menu começa escondido */
+nav ul {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--fundo-claro, #f9f9f9);
+  padding: 12px;
+  border-radius: 8px;
+  list-style: none;
+}
+
+/* ativa o menu */
+nav.ativo ul {
+  display: flex;
+}
+
+/* SUBMENU */
+.has-submenu > .submenu {
+  display: none;
+  flex-direction: column;
+  padding-left: 16px;
+}
+
+.has-submenu.open > .submenu {
+  display: flex;
+}
+
+@media (min-width: 769px) {
+  nav ul {
+    align-items: center;
+  }
+}
