@@ -1,4 +1,4 @@
-name:  Deploy do Site Mãos do Amanhã
+name:  Deploy Mãos do Amanhã
 
 on:
   push:
@@ -6,45 +6,43 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name:  Clonar repositório
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name:  Configurar Node.js
-        uses: actions/setup-node@v4
+      - name:  Instalar Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '20'
 
-      - name: Instalar minificadores
-        run: npm install -g clean-css-cli html-minifier-terser uglify-js
+      - name:  Instalar dependências
+        run: npm install clean-css-cli html-minifier terser -g
 
-      # ===============================
-      #  MINIFICAÇÃO DE ARQUIVOS
-      # ===============================
-      - name:  Minificar CSS (com suporte a imports locais)
+      - name:  Minificar CSS (com suporte a imports)
         run: |
           mkdir -p dist/assets/css
           cp -r assets/css/* dist/assets/css/
           for file in $(find dist/assets/css -name "*.css"); do
-            cleancss -O2 -o "$file" "$file"
+            cleancss --skip-import -O2 -o "$file" "$file"
           done
 
-      - name:  Minificar JavaScript
+      - name: Minificar JavaScript
         run: |
           mkdir -p dist/js
-          for file in $(find js -name "*.js"); do
-            uglifyjs "$file" -o "dist/$file" --compress --mangle
+          cp -r js/* dist/js/
+          for file in $(find dist/js -name "*.js"); do
+            terser "$file" -o "$file" -c -m
           done
 
       - name:  Minificar HTML
         run: |
           mkdir -p dist
-          for file in $(find . -name "*.html" -not -path "./dist/*"); do
-            mkdir -p "$(dirname "dist/$file")"
-            html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --minify-css true --minify-js true -o "dist/$file" "$file"
+          cp -r assets dist/assets
+          for file in $(find . -name "*.html"); do
+            html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true -o "dist/${file}" "$file"
           done
 
       - name:  Copiar imagens
@@ -52,9 +50,6 @@ jobs:
           mkdir -p dist/assets/img
           cp -r assets/img/* dist/assets/img/
 
-      # ===============================
-      #  DEPLOY AUTOMÁTICO
-      # ===============================
       - name:  Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
