@@ -378,3 +378,179 @@ nav.ativo ul {
     align-items: center;
   }
 }
+
+/* === MODO ESCURO === */
+.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+.dark-mode header,
+.dark-mode footer {
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+}
+
+.dark-mode a {
+  color: #66b2ff;
+}
+
+.dark-mode a:hover {
+  color: #99ccff;
+}
+
+/* === MODO ALTO CONTRASTE === */
+.high-contrast {
+  background-color: #000;
+  color: #fff;
+}
+
+.high-contrast header,
+.high-contrast footer {
+  background-color: #000;
+  color: #ff0;
+}
+
+.high-contrast a {
+  color: #0ff;
+  text-decoration: underline;
+}
+
+.high-contrast button {
+  background-color: #ff0;
+  color: #000;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 10px;
+  top: 10px;
+  width: auto;
+  height: auto;
+  padding: 8px;
+  background: #fff;
+  color: #000;
+  z-index: 9999;
+}
+
+a:focus, button:focus, input:focus {
+  outline: 3px solid #ffcc00;
+  outline-offset: 2px;
+}
+
+.error {
+  color: #b00020;  /* vermelho acessível */
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* === AJUSTE DE MODO ESCURO COMPLETO === */
+.dark-mode body {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+.dark-mode header,
+.dark-mode footer {
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+}
+
+.dark-mode main,
+.dark-mode section,
+.dark-mode .container,
+.dark-mode article {
+  background-color: #181818;
+  color: #eaeaea;
+  border-color: #333;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3, 
+.dark-mode p, 
+.dark-mode li {
+  color: #f0f0f0;
+}
+
+.dark-mode a {
+  color: #66b2ff;
+}
+
+.dark-mode a:hover {
+  color: #99ccff;
+}
+
+.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-mode button:hover {
+  background-color: #444;
+}
+
+/* Moldura clara para imagens no modo escuro */
+.dark-mode img {
+  border: 2px solid #444;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+
+/* === MODO ALTO CONTRASTE COMPLETO === */
+.high-contrast body {
+  background-color: #000;
+  color: #fff;
+}
+
+.high-contrast header,
+.high-contrast footer {
+  background-color: #000;
+  color: #ff0;
+  border-bottom: 2px solid #ff0;
+}
+
+.high-contrast main,
+.high-contrast section,
+.high-contrast .container,
+.high-contrast article {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.high-contrast h1, 
+.high-contrast h2, 
+.high-contrast h3, 
+.high-contrast p, 
+.high-contrast li {
+  color: #fff;
+}
+
+.high-contrast a {
+  color: #0ff;
+  text-decoration: underline;
+}
+
+.high-contrast a:hover {
+  color: #ff0;
+}
+
+.high-contrast button {
+  background-color: #ff0;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+.high-contrast img {
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ff0;
+}
