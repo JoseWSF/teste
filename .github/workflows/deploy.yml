@@ -1,28 +1,30 @@
-name: 🚀 Deploy Automático — Mãos do Amanhã
+name:  Deploy do Site Mãos do Amanhã
 
 on:
   push:
     branches:
-      - main  # executa toda vez que fizer push na main
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔍 Checkout do código
+      - name:  Clonar repositório
         uses: actions/checkout@v4
 
-      - name: 🟢 Instalar Node.js
+      - name:  Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: 📦 Instalar dependências
-        run: |
-          npm install clean-css-cli html-minifier terser -g
+      - name: Instalar minificadores
+        run: npm install -g clean-css-cli html-minifier-terser uglify-js
 
-      - name: 🧹 Minificar CSS (com suporte a imports locais)
+      # ===============================
+      #  MINIFICAÇÃO DE ARQUIVOS
+      # ===============================
+      - name:  Minificar CSS (com suporte a imports locais)
         run: |
           mkdir -p dist/assets/css
           cp -r assets/css/* dist/assets/css/
@@ -30,19 +32,30 @@ jobs:
             cleancss -O2 -o "$file" "$file"
           done
 
-      - name: ⚙️ Minificar JavaScript
+      - name:  Minificar JavaScript
         run: |
-          mkdir -p dist/assets/js
+          mkdir -p dist/js
           for file in $(find js -name "*.js"); do
-            terser "$file" -o "dist/$file" --compress --mangle
+            uglifyjs "$file" -o "dist/$file" --compress --mangle
           done
 
-      - name: 🧱 Copiar HTML e imagens
+      - name:  Minificar HTML
         run: |
           mkdir -p dist
-          cp -r index.html projetos.html cadastro.html assets/img dist/
+          for file in $(find . -name "*.html" -not -path "./dist/*"); do
+            mkdir -p "$(dirname "dist/$file")"
+            html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --minify-css true --minify-js true -o "dist/$file" "$file"
+          done
 
-      - name: 🚀 Deploy no GitHub Pages
+      - name:  Copiar imagens
+        run: |
+          mkdir -p dist/assets/img
+          cp -r assets/img/* dist/assets/img/
+
+      # ===============================
+      #  DEPLOY AUTOMÁTICO
+      # ===============================
+      - name:  Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
