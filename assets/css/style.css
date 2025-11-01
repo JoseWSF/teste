@@ -1,7 +1,7 @@
 /* === IMPORTAÇÕES MODULARES === */
-@import url('variables');
-@import url('layout');
-@import url('components');
+/* @import url('variables.css');
+@import url('layout.css');
+@import url('components.css'); */
 
 /* === VARIÁVEIS GLOBAIS === */
 :root {
