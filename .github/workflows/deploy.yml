@@ -22,11 +22,12 @@ jobs:
         run: |
           npm install clean-css-cli html-minifier terser -g
 
-      - name: 🧹 Minificar CSS
+      - name: 🧹 Minificar CSS (com suporte a imports locais)
         run: |
           mkdir -p dist/assets/css
-          for file in $(find assets/css -name "*.css"); do
-            cleancss -o "dist/$file" "$file"
+          cp -r assets/css/* dist/assets/css/
+          for file in $(find dist/assets/css -name "*.css"); do
+            cleancss -O2 -o "$file" "$file"
           done
 
       - name: ⚙️ Minificar JavaScript
