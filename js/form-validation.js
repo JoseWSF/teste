@@ -32,5 +32,35 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("✅ Cadastro enviado com sucesso! (simulação)");
       form.reset();
     }
+
+    function showError(input, message) {
+  const id = input.id + '-err';
+  let err = document.getElementById(id);
+  if (!err) {
+    err = document.createElement('div');
+    err.id = id;
+    err.setAttribute('role','alert');
+    err.setAttribute('aria-live','assertive');
+    input.insertAdjacentElement('afterend', err);
+  }
+  err.textContent = message;
+  input.setAttribute('aria-invalid', 'true');
+}
+function clearError(input) {
+  const id = input.id + '-err';
+  const err = document.getElementById(id);
+  if (err) err.textContent = '';
+  input.removeAttribute('aria-invalid');
+
+  form.addEventListener('submit', (e) => {
+  const email = form.querySelector('#email');
+  if (!email.value.includes('@')) {
+    e.preventDefault();
+    showError(email, 'Informe um e-mail válido.');
+    email.focus();
+  }
+});
+
+    }
   });
 });

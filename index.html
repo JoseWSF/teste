@@ -13,12 +13,16 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
   <header>
     <div class="container">
       <h1>Mãos do Amanhã</h1>
       <p class="tagline">Transformando vidas com tecnologia e solidariedade</p>
 
-      <button class="menu-toggle" aria-label="Abrir menu">☰ Menu</button>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰ Menu</button>
+      <button id="theme-toggle" aria-pressed="false" aria-label="Alternar tema">🌙</button>
       
       <nav aria-label="Menu principal" id="menu-principal">
   <ul>
@@ -37,7 +41,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section aria-labelledby="sobre-titulo" id="sobre">
       <div class="container">
         <h2 id="sobre-titulo">Quem somos</h2>
@@ -102,5 +106,6 @@
 
   <script src="js/menu.js"></script>
   <script src="js/spa.js"></script>
+  <script src="js/theme-toggle.js"></script>
 </body>
 </html>

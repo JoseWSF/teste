@@ -1,32 +1,42 @@
-// menu.js — controla o menu hambúrguer no mobile (versão aprimorada e acessível)
-document.addEventListener("DOMContentLoaded", () => {
-  const botao = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('menu-principal');
+  const submenuTriggers = menu.querySelectorAll('.has-submenu > a');
 
-  if (botao && nav) {
-    // Atributos ARIA para acessibilidade
-    botao.setAttribute("aria-expanded", "false");
-    botao.setAttribute("aria-controls", "menu-principal");
+  // Abre/fecha menu principal (hambúrguer)
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !expanded);
+    menu.classList.toggle('ativo');
+  });
 
-    botao.addEventListener("click", () => {
-      const aberto = nav.classList.toggle("ativo");
-      botao.setAttribute("aria-expanded", aberto);
-    });
-  }
-});
+  // Permite fechar o menu com tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu.classList.remove('ativo');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+  });
 
-// Submenu Dropdown no mobile
-document.addEventListener("DOMContentLoaded", () => {
-  const submenuLinks = document.querySelectorAll(".has-submenu > a");
+  // Controle do submenu via teclado
+  submenuTriggers.forEach(trigger => {
+    trigger.addEventListener('keydown', (e) => {
+      const submenu = trigger.nextElementSibling;
+      if (!submenu) return;
 
-  submenuLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      // Somente ativa o clique em telas pequenas
-      if (window.innerWidth <= 600) {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        const parent = link.parentElement;
-        const isOpen = parent.classList.toggle("open");
-        link.setAttribute("aria-expanded", isOpen);
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', !expanded);
+        submenu.classList.toggle('aberto');
+      }
+
+      // Fecha submenu com ESC
+      if (e.key === 'Escape') {
+        submenu.classList.remove('aberto');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
       }
     });
   });
