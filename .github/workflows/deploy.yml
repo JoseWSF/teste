@@ -1,0 +1,48 @@
+name: 🚀 Deploy Automático — Mãos do Amanhã
+
+on:
+  push:
+    branches:
+      - main  # executa toda vez que fizer push na main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout do código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Instalar dependências
+        run: |
+          npm install clean-css-cli html-minifier terser -g
+
+      - name: 🧹 Minificar CSS
+        run: |
+          mkdir -p dist/assets/css
+          for file in $(find assets/css -name "*.css"); do
+            cleancss -o "dist/$file" "$file"
+          done
+
+      - name: ⚙️ Minificar JavaScript
+        run: |
+          mkdir -p dist/assets/js
+          for file in $(find js -name "*.js"); do
+            terser "$file" -o "dist/$file" --compress --mangle
+          done
+
+      - name: 🧱 Copiar HTML e imagens
+        run: |
+          mkdir -p dist
+          cp -r index.html projetos.html cadastro.html assets/img dist/
+
+      - name: 🚀 Deploy no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
