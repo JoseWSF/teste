@@ -1,57 +1,49 @@
-name: 🚀 Deploy Mãos do Amanhã
+name: 🚀 Deploy no GitHub Pages
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Clonar repositório
+      - name: 📥 Clonar repositório
         uses: actions/checkout@v3
 
-      - name: ⚙️ Instalar Node.js
+      - name: 🧩 Instalar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 18
 
-      - name: 📥 Instalar dependências
-        run: npm install clean-css-cli html-minifier terser -g
+      - name: 📦 Instalar dependências
+        run: npm install clean-css-cli -g
 
-      - name: 🧹 Minificar CSS (corrigido)
-        run: |
-          mkdir -p dist/assets/css
-          cp -r assets/css/* dist/assets/css/
-          for file in $(find dist/assets/css -name "*.css"); do
-            cleancss -O2 --inline none -o "$file" "$file"
-          done
-
-      - name: 🧩 Minificar JavaScript
-        run: |
-          mkdir -p dist/js
-          cp -r js/* dist/js/
-          for file in $(find dist/js -name "*.js"); do
-            terser "$file" -o "$file" -c -m
-          done
-
-      - name: 🧱 Minificar HTML
+      - name: 🗂️ Preparar diretórios
         run: |
           mkdir -p dist
-          cp -r assets dist/assets
-          for file in $(find . -name "*.html"); do
-            html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true -o "dist/${file}" "$file"
+          cp -r assets dist/
+          cp -r js dist/
+          cp -r *.html dist/
+
+      - name: ✨ Minificar CSS
+        run: |
+          for file in $(find dist/assets/css -name "*.css"); do
+            cleancss -O2 -o "$file" "$file"
           done
 
-      - name: 🖼️ Copiar imagens
+      - name: 🧹 Minificar HTML
         run: |
-          mkdir -p dist/assets/img
-          cp -r assets/img/* dist/assets/img/
+          for file in $(find dist -name "*.html"); do
+            npx html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o "$file" "$file"
+          done
 
       - name: 🌍 Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: ./dist
