@@ -1,4 +1,4 @@
-name:  Deploy Mãos do Amanhã
+name: 🚀 Deploy Mãos do Amanhã
 
 on:
   push:
@@ -10,26 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name:  Clonar repositório
+      - name: 📦 Clonar repositório
         uses: actions/checkout@v3
 
-      - name:  Instalar Node.js
+      - name: ⚙️ Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name:  Instalar dependências
+      - name: 📥 Instalar dependências
         run: npm install clean-css-cli html-minifier terser -g
 
-      - name:  Minificar CSS (com suporte a imports)
+      - name: 🧹 Minificar CSS (corrigido)
         run: |
           mkdir -p dist/assets/css
           cp -r assets/css/* dist/assets/css/
           for file in $(find dist/assets/css -name "*.css"); do
-            cleancss --skip-import -O2 -o "$file" "$file"
+            cleancss -O2 --inline none -o "$file" "$file"
           done
 
-      - name: Minificar JavaScript
+      - name: 🧩 Minificar JavaScript
         run: |
           mkdir -p dist/js
           cp -r js/* dist/js/
@@ -37,7 +37,7 @@ jobs:
             terser "$file" -o "$file" -c -m
           done
 
-      - name:  Minificar HTML
+      - name: 🧱 Minificar HTML
         run: |
           mkdir -p dist
           cp -r assets dist/assets
@@ -45,12 +45,12 @@ jobs:
             html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true -o "dist/${file}" "$file"
           done
 
-      - name:  Copiar imagens
+      - name: 🖼️ Copiar imagens
         run: |
           mkdir -p dist/assets/img
           cp -r assets/img/* dist/assets/img/
 
-      - name:  Publicar no GitHub Pages
+      - name: 🌍 Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
