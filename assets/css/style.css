@@ -76,9 +76,16 @@ p {
 }
 
 /* === SEÇÕES PRINCIPAIS === */
+main {
+  display: block;
+}
+
 main section {
+  display: block;        /* força o empilhamento vertical */
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 40px;   /* centraliza horizontalmente e dá espaçamento abaixo */
   text-align: center;
-  margin-bottom: 40px;
 }
 
 /* === ARTIGOS DE PROJETOS === */
