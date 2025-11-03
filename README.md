@@ -16,28 +16,48 @@ O site foi planejado para simular uma ONG real, com áreas de transparência, pr
 Mãos-do-amanhã/
 
 │
+
 ├── assets/
+
 │ ├── css/
 
 │ │ ├── style.css
+
 │ │ ├── layout.css
+
 │ │ ├── variables.css
+
 │ │ └── components.css
+
 │ ├── img/
+
 │ │ ├── logo-ong.webp
+
 │ │ └── projeto-alfabetiza.webp
+
 │
 ├── js/
+
 │ ├── menu.js
+
 │ ├── spa.js
+
 │ ├── form-validation.js
+
 │ ├── masks.js
+
 │ └── theme-toggle.js
+
 │
+
 ├── index.html
+
 ├── projetos.html
+
 ├── cadastro.html
+
 ├── README.md
+
 └── .github/workflows/deploy.yml
 
 
