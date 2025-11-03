@@ -1,81 +1,151 @@
-Mãos do Amanhã (Projeto acadêmico) - Entrega I
+#  MÃOS DO AMANHÃ  
+**Transformando vidas com tecnologia e solidariedade**
 
-💡 Sobre o Projeto
+---
 
-Mãos do Amanhã é uma plataforma web desenvolvida com o objetivo de oferecer às ONGs uma presença digital acessível, moderna e funcional. O site foi criado como parte de um projeto acadêmico, aplicando conceitos de HTML5, CSS3 e JavaScript, com foco em responsividade, acessibilidade e boas práticas de desenvolvimento.
+##  Sobre o Projeto
 
-🎯 Objetivos
+**Mãos do Amanhã** é uma plataforma fictícia criada como parte do projeto acadêmico da disciplina de *Desenvolvimento Web*.  
+O objetivo é demonstrar a aplicação de HTML5, CSS3 e JavaScript moderno em um site institucional acessível e responsivo, com foco em **projetos sociais, voluntariado e doações**.
 
-Apresentar a missão, visão e valores da ONG;
+O site foi planejado para simular uma ONG real, com áreas de transparência, projetos e cadastro de voluntários.
 
-Divulgar projetos sociais e oportunidades de voluntariado;
 
-Permitir o cadastro de voluntários e doadores;
 
-Garantir uma navegação clara, intuitiva e responsiva.
 
-🧩 Tecnologias Utilizadas
+Mãos-do-amanhã/
+│
+├── assets/
+│ ├── css/
+│ │ ├── style.css
+│ │ ├── layout.css
+│ │ ├── variables.css
+│ │ └── components.css
+│ ├── img/
+│ │ ├── logo-ong.webp
+│ │ └── projeto-alfabetiza.webp
+│
+├── js/
+│ ├── menu.js
+│ ├── spa.js
+│ ├── form-validation.js
+│ ├── masks.js
+│ └── theme-toggle.js
+│
+├── index.html
+├── projetos.html
+├── cadastro.html
+├── README.md
+└── .github/workflows/deploy.yml
 
-HTML5 — estrutura semântica e acessível
 
-CSS3 — design responsivo e harmonia visual
+---
 
-JavaScript — validação e máscaras de formulários
+##  Tecnologias Utilizadas
 
-GitHub Pages — hospedagem gratuita do site
+| Categoria | Tecnologias |
+|------------|-------------|
+| Estrutura | **HTML5 Semântico** |
+| Estilização | **CSS3 (Grid, Flexbox, Variáveis, Responsividade)** |
+| Interatividade | **JavaScript (DOM, Eventos, LocalStorage, SPA)** |
+| Acessibilidade | **WCAG 2.1 AA**, **aria-labels**, **foco visível**, **modo escuro**, **modo alto contraste** |
+| Versionamento | **Git / GitHub com GitFlow** |
+| Deploy | **GitHub Pages + GitHub Actions (CI/CD)** |
 
-Acesse o site https://josewsf.github.io/Maos-do-amanha/
+---
 
-O projeto segue princípios básicos de acessibilidade (WCAG 2.1 AA) e design mobile-first, garantindo boa experiência de navegação em celulares, tablets e desktops.
+##  Funcionalidades Implementadas
 
-------------//-------------//------------//-------------//------------//-------------//------------//-------------
+###  Estrutura Institucional
+- Página inicial com missão, visão e valores  
+- Histórico e conquistas  
+- Equipe e relatórios de transparência  
 
-ATUALIZAÇÃO
+###  Navegação e Responsividade
+- Menu principal com submenu dropdown  
+- Menu hambúrguer em telas menores  
+- Navegação por teclado e foco acessível  
 
-Mãos do Amanhã — Entrega II (CSS3 e Interface Responsiva) 📘 Descrição
+###  Interatividade
+- SPA básico com `spa.js`  
+- Validação de formulários e feedback visual  
+- Modo escuro e alto contraste com `theme-toggle.js`  
 
-Segunda etapa do projeto Mãos do Amanhã, com foco na aplicação de CSS3, responsividade e interatividade com JavaScript. Esta versão aprimora a estrutura HTML da Entrega I, criando uma interface moderna, acessível e funcional.
+###  Recursos Técnicos
+- Uso de **variáveis CSS** (Design System)  
+- Sistema de espaçamento modular (8–64px)  
+- Paleta de cores com contraste 4.5:1  
+- Componentes com sombra e borda suave  
 
-🎯 Objetivos
+---
 
-Implementar design system com variáveis CSS.
+##  Acessibilidade (WCAG 2.1 AA)
 
-Aplicar Grid e Flexbox para layouts responsivos.
+O site foi projetado com foco total em inclusão digital, seguindo recomendações da WCAG:
 
-Adicionar submenu dropdown e menu hambúrguer.
+✅ Estrutura semântica completa (`header`, `main`, `nav`, `footer`)  
+✅ Navegação por teclado (`tab`, `enter`, `esc`)  
+✅ Foco visível e contraste suficiente  
+✅ `aria-label`, `aria-pressed` e `role` aplicados  
+✅ Modo escuro e alto contraste para baixa visão  
 
-Criar componentes visuais e formulário com máscaras.
+---
 
-Garantir acessibilidade e boa experiência do usuário.
+##  GitFlow e Versionamento
 
-Estrutura das pastas Manteve a mesma estrutura das pastas e subpastas, mas com acrescimo de arquivos .CSS e .JS e atualizações dos arquivos HTML.
+Fluxo de branches utilizado:
 
-variables.css → Design System (cores, tipografia, espaçamento)
+```bash
+main        # Versão estável e publicada
+develop     # Versão de desenvolvimento
+feature/*   # Novas funcionalidades
+release/*   # Versões para revisão
+hotfix/*    # Correções rápidas
 
-layout.css → Estrutura de layout, grid e responsividade
 
-components.css → Botões, cards, alerts, modais, badges
+## Versionamento semântico:
 
-menu.js → Controle do menu responsivo e submenu dropdown
+v1.0.0  - Estrutura HTML e CSS
+v1.1.0  - Interatividade (Entrega III)
+v1.2.0  - Acessibilidade e Deploy (Entrega IV)
 
-------------//-------------//------------//-------------//------------//-------------//------------//-------------
+- Deploy Automatizado
 
-ATUALIZAÇÃO Entrega III – Interatividade e Funcionalidades
+O deploy é realizado via GitHub Actions com a Action:
+peaceiris/actions-gh-pages@v3
 
-⚙️ Funcionalidades Implementadas
+Cada commit na branch main dispara o workflow .github/workflows/deploy.yml;
 
-SPA, Navegação dinâmica entre páginas sem recarregar.
+O projeto é minificado e enviado automaticamente para a branch gh-pages;
 
-Validação de Formulário, Verificação de campos e alertas de preenchimento.
+O site é publicado em:
 
-Máscaras de Entrada, CPF, telefone e CEP com formatação automática.
+- https://josewsf.github.io/Maos-do-amanha/
 
-Menu Hambúrguer Responsivo,| Menu interativo com submenu e acessibilidade.
+## Otimização
 
-Feedback ao Usuário, Alertas visuais e mensagens de sucesso simuladas.
+CSS, JS e HTML minificados para reduzir tamanho final;
 
----------------------//----------------------
+Imagens otimizadas (.webp);
 
-👨‍💻 Desenvolvido por
+Lazy loading e cache configurados;
 
-José Ferreira Projeto acadêmico — Desenvolvimento Web Front-End 2025
+Estrutura modular (import de CSS dividido).
+
+## Licença
+
+Este projeto é de uso acadêmico e não possui fins comerciais.
+Desenvolvido por José Werberson da Silva Ferreira — 2025.
+
+## Créditos e Agradecimentos
+
+Projeto desenvolvido sob orientação da disciplina de Desenvolvimento Web,
+agradecendo à equipe docente pelo suporte e às ferramentas de código aberto utilizadas.
+
+
+---
+
+
+
+
+
