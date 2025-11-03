@@ -14,9 +14,13 @@ O site foi planejado para simular uma ONG real, com áreas de transparência, pr
 
 
 Mãos-do-amanhã/
+
 │
+
 ├── assets/
+
 │ ├── css/
+
 │ │ ├── style.css
 │ │ ├── layout.css
 │ │ ├── variables.css
