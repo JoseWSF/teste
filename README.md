@@ -105,10 +105,10 @@ Mãos-do-amanhã/
 
 O site foi projetado com foco total em inclusão digital, seguindo recomendações da WCAG:
 
-✅ Estrutura semântica completa (`header`, `main`, `nav`, `footer`)  
-✅ Navegação por teclado (`tab`, `enter`, `esc`)  
+✅ Estrutura semântica completa (header, main, nav, footer)  
+✅ Navegação por teclado (tab, enter, esc)  
 ✅ Foco visível e contraste suficiente  
-✅ `aria-label`, `aria-pressed` e `role` aplicados  
+✅ aria-label, aria-pressed e role aplicados  
 ✅ Modo escuro e alto contraste para baixa visão  
 
 ---
